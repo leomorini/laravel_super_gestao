@@ -34,6 +34,7 @@ class ContatoController extends Controller
         //$contato->create($request->all());
 
         //realizar validação dos dados do formulário
+        //para campos unicos usar: unique:<nome_da_tabela>
         $request->validate([
             'nome' => 'required|min:3|max:40',
             'telefone' => 'required',
