@@ -35,13 +35,24 @@ class ContatoController extends Controller
 
         //realizar validação dos dados do formulário
         //para campos unicos usar: unique:<nome_da_tabela>
-        $request->validate([
+
+        $rules = [
             'nome' => 'required|min:3|max:40',
             'telefone' => 'required',
             'email' => 'email',
             'motivo_contatos_id' => 'required',
             'mensagem' => 'required|max:2000'
-        ]);
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute precisa ser preenchido',
+            'min' => 'O campo :attribute precisa ter pelo menos 3 caracteres',
+            'max' => 'O campo :attribute só pode ter no máximo 40 caracteres',
+            'email' => 'O campo :attribute precisa ser um email válido',
+            'motivo_contatos_id.required' => 'O campo motivo contato precisa ser preenchido'
+        ];
+
+        $request->validate($rules, $feedback);
 
         SiteContato::create($request->all());
 
