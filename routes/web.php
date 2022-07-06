@@ -18,9 +18,10 @@ Route::get('/sobre', 'SobreNosController@index')->name('site.sobre');
 Route::get('/contato', 'ContatoController@index')->name('site.contato');
 Route::post('/contato', 'ContatoController@store')->name('site.contato');
 
-Route::get('/login', 'ContatoController@index')->name('site.login');
+Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
+Route::post('/login', 'LoginController@auth')->name('site.login');
 
-Route::prefix('app')->group(function() {
+Route::middleware('authentication:default')->prefix('app')->group(function() {
     Route::get('/clientes', 'ContatoController@index')->name('app.clientes');
     Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
     Route::get('/produtos', 'ContatoController@index')->name('app.produtos');
