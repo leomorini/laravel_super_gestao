@@ -22,9 +22,11 @@ Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@auth')->name('site.login');
 
 Route::middleware('authentication:default')->prefix('app')->group(function() {
-    Route::get('/clientes', 'ContatoController@index')->name('app.clientes');
-    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
-    Route::get('/produtos', 'ContatoController@index')->name('app.produtos');
+    Route::get('/home', 'HomeController@index')->name('app.home');
+    Route::get('/sair', 'LoginController@logout')->name('app.sair');
+    Route::get('/cliente', 'ClientController@index')->name('app.client');
+    Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedores');
+    Route::get('/produto', 'ProductController@index')->name('app.produtos');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@index')->name('teste.index')->where('p1', '[0-9]+')->where('p2', '[0-9]+');
