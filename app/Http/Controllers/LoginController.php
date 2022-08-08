@@ -36,6 +36,7 @@ class LoginController extends Controller
             'password.required' => 'O campo senha é obrigatório'
         ];
 
+
         $request->validate($rules, $feedback);
 
         $email = $request->get('user');
@@ -55,6 +56,7 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request) {
-
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
