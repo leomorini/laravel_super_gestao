@@ -25,8 +25,14 @@ Route::middleware('authentication:default')->prefix('app')->group(function() {
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/sair', 'LoginController@logout')->name('app.sair');
     Route::get('/cliente', 'ClientController@index')->name('app.client');
-    Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedores');
-    Route::get('/produto', 'ProductController@index')->name('app.produtos');
+    Route::get('/produto', 'ProductController@index')->name('app.produto');
+
+    Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+    Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+    Route::get('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+    Route::post('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+    Route::get('/fornecedor/excluir/{id}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
+    Route::get('/fornecedor/editar/{id}', 'FornecedorController@editar')->name('app.fornecedor.editar');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@index')->name('teste.index')->where('p1', '[0-9]+')->where('p2', '[0-9]+');
