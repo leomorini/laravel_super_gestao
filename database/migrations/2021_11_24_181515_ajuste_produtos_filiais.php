@@ -49,10 +49,15 @@ class AjusteProdutosFiliais extends Migration
     public function down()
     {
         //Adicionar colunas
-        Schema::create('produtos', function(Blueprint $table) {
+        Schema::table('produtos', function(Blueprint $table) {
             $table->decimal('preco_venda', 8, 2);
             $table->integer('estoque_minimo');
             $table->integer('estoque_maximo');
+        });
+
+        Schema::table('produto_filiais', function(Blueprint $table) {
+            $table->dropForeign(['filial_id']);
+            $table->dropForeign(['produto_id']);
         });
 
         Schema::dropIfExists('produto_filiais');
