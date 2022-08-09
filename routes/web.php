@@ -25,7 +25,7 @@ Route::middleware('authentication:default')->prefix('app')->group(function() {
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/sair', 'LoginController@logout')->name('app.sair');
     Route::get('/cliente', 'ClientController@index')->name('app.client');
-    Route::get('/produto', 'ProductController@index')->name('app.produto');
+    Route::resource('produto', 'ProdutoController');
 
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
     Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
