@@ -8,6 +8,8 @@
             <p>Listagem de produtos</p>
         </div>
 
+        @include('app.fornecedor.partials.menu', ['add' => true])
+
         <div class="informacao-pagina">
             <div style="width: 90%; margin-left: auto; margin-right: auto;">
                 @if(!empty($produtos))
@@ -20,6 +22,7 @@
                                 <th>Unidade Id</th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,8 +32,9 @@
                                     <td>{{$produto->descricao}}</td>
                                     <td>{{$produto->peso}}</td>
                                     <td>{{$produto->unidade_id}}</td>
-                                    <td><a href="{{route('produto.destroy', $produto->id)}}">Excluir</a></td>
-                                    <td><a href="{{route('produto.edit', $produto->id)}}">Editar</a></td>
+                                    <td><a href="{{route('produto.show', ['produto' => $produto->id])}}">Visualizar</a></td>
+                                    <td><a href="{{route('produto.destroy', ['produto' => $produto->id])}}">Excluir</a></td>
+                                    <td><a href="{{route('produto.edit', ['produto' => $produto->id])}}">Editar</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
